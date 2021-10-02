@@ -1,8 +1,8 @@
-// DATABASE  ============================================
-const db = require('./db/db.json')
 // DEPENDENCIES =======================================
 const fs = require('fs')
 const path = require('path')
+// DATABASE  ============================================
+const db = require('./db/db.json')
 // EXPRESS =================================
 const express = require('express')
 const PORT = 3001 || process.env.PORT
@@ -33,18 +33,14 @@ app.get('*', (req, res) => {
 // POST REQUESTS =======================================
 app.post('/api/notes', (req, res) => {
     const newNote = req.body
-    console.log(newNote)
-    fs.writeFile(
-        path.join(__dirname, '/db/db.json'),
-        JSON.stringify(newNote, null, 2),
-        (err) => {
-            if (err) {
-                return err
-            } else {
-                return res.sendStatus(200).send('Thanks for adding Note') 
-            }
+    db.push(newNote)
+    console.log(db)
+    fs.writeFile('./db/db.json', JSON.stringify(db, null, 2), (err) => {
+        if (err) {
+            return err
         }
-    )
+        return res.sendStatus(200)
+    })
 })
 
 // LISTEN ==============================

@@ -1,4 +1,6 @@
-{
-  "title": "sdg",
-  "text": "waesdvg"
-}
+[
+    {
+        "title":"Test Title",
+        "text":"Test text"
+    }
+]
