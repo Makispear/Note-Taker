@@ -33,8 +33,18 @@ app.get('*', (req, res) => {
 // POST REQUESTS =======================================
 app.post('/api/notes', (req, res) => {
     const newNote = req.body
-    db.push(newNote)
-    return res.status(200).send('Your Note has been added!')
+    console.log(newNote)
+    fs.writeFile(
+        path.join(__dirname, '/db/db.json'),
+        JSON.stringify(newNote, null, 2),
+        (err) => {
+            if (err) {
+                return err
+            } else {
+                return res.sendStatus(200).send('Thanks for adding Note') 
+            }
+        }
+    )
 })
 
 // LISTEN ==============================
