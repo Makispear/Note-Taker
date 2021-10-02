@@ -1,5 +1,5 @@
 // DATABASE  ============================================
-const { db } = require('./db/db.json')
+const db = require('./db/db.json')
 // DEPENDENCIES =======================================
 const fs = require('fs')
 const path = require('path')
@@ -30,11 +30,11 @@ app.get('*', (req, res) => {
     return res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
-// POST =======================================
+// POST REQUESTS =======================================
 app.post('/api/notes', (req, res) => {
-    const newNote = saveNote(req.body)
-    res.json(newNote)
-    // console.log(newNote)
+    const newNote = req.body
+    db.push(newNote)
+    return res.status(200).send('Your Note has been added!')
 })
 
 // LISTEN ==============================
