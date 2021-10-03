@@ -2,7 +2,7 @@
 const fs = require('fs')
 const path = require('path')
 // DATABASE  ============================================
-const db = require('./db/db.json')
+let db = require('./db/db.json')
 // EXPRESS =================================
 const express = require('express')
 const PORT = 3001 || process.env.PORT
@@ -40,8 +40,19 @@ app.post('/api/notes', (req, res) => {
         if (err) {
             return err
         }
-        return res.sendStatus(200)
+        return res.json(newNote).send(200)
     })
+})
+
+app.delete('/api/notes/:id', (req, res) => {
+    const { id } = req.params
+    const deleted = db.find(note => note.id === id)
+    if (deleted) {
+        db = db.filter(note => note.id !== id)
+        res.sendStatus(200).json(deleted)
+    } else {
+        res.sendStatus(404)
+    }
 })
 
 // LISTEN ==============================
