@@ -5,15 +5,13 @@ const htmlRoutes = require('./routes/htmlRoutes')
 const express = require('express')
 const PORT = 3001 || process.env.PORT
 const app = express()
-
 // USE ==============================================
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.static('public'))
 app.use('/api', apiRoutes)
 app.use('/', htmlRoutes)
-
 // LISTEN ==============================
 app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}!`)
+    console.log(`Listening on port ${PORT}!`)
 })
