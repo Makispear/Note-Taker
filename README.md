@@ -16,4 +16,5 @@ with this app, you can
 - never worry about it again! 🙂
 
 ## Visuals
-![Home Page](public/assets/img/page.jpg?raw=true "Home_Page")
+![Home page](public/assets/img/homePage.jpg?raw=true "Home page")
+![Add note page](public/assets/img/notesPage.jpg?raw=true "Add notes page")
