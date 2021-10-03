@@ -4,7 +4,7 @@
 Note Taker is an application that helps users write notes, store them in a database, and come back to them later.
 
 ## links 
-- [Link to GitHub deployed page](https://makispear.github.io/Note-Taker/)
+- [Link to Heroku deployed page](https://notetakr-1999.herokuapp.com/)
 - [Link to GitHub repository](https://github.com/Makispear/Note-Taker)
 
 ## features
