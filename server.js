@@ -1,6 +1,7 @@
 // DEPENDENCIES =======================================
 const fs = require('fs')
 const path = require('path')
+const {nanoid} = require('nanoid')
 // DATABASE  ============================================
 let db = require('./db/db.json')
 // EXPRESS =================================
@@ -33,7 +34,7 @@ app.get('*', (req, res) => {
 // POST REQUESTS =======================================
 app.post('/api/notes', (req, res) => {
     const newNote = req.body
-    req.body.id = db.length.toString();
+    req.body.id = nanoid();
     db.push(newNote)
     console.log(db)
     fs.writeFile('./db/db.json', JSON.stringify(db, null, 2), (err) => {
@@ -49,6 +50,12 @@ app.delete('/api/notes/:id', (req, res) => {
     const deleted = db.find(note => note.id === id)
     if (deleted) {
         db = db.filter(note => note.id !== id)
+        fs.writeFile('./db/db.json', JSON.stringify(db, null, 2), (err) => {
+            if (err) {
+                return err
+            }
+            return res.json(newNote).send(200)
+        })
         res.sendStatus(200).json(deleted)
     } else {
         res.sendStatus(404)
