@@ -33,6 +33,7 @@ app.get('*', (req, res) => {
 // POST REQUESTS =======================================
 app.post('/api/notes', (req, res) => {
     const newNote = req.body
+    req.body.id = db.length.toString();
     db.push(newNote)
     console.log(db)
     fs.writeFile('./db/db.json', JSON.stringify(db, null, 2), (err) => {
